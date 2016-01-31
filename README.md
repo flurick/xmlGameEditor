@@ -1,2 +1,2 @@
 # xmlGameEditor
-for engma and gamemaker
+For viewing, editing and hopefully running engma and gamemaker projects.
