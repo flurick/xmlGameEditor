@@ -1,0 +1,59 @@
+designed with qt creators qt-quick-mainwindow template
+
+converted to python with pyside-uic 
+"QListItem" replaced by "QListWidget"
+
+(it overwrote its self the first time when no other ourput was set)
+
+no neede if the list widget is used
+
+	self.groupItem = QStandardItemModel(self.ui.groups)
+	self.ui.assets.setModel(self.groupItem)
+	self.groupSelection = self.ui.groups.selectionModel()
+	self.groupSelection.selectionChanged.connect(self.listGroups)
+
+
+#1
+for tag in self.soup.find_all(assetTags):
+    self.ui.assets.addItem(tag.text)
+#2
+self.ui.assets.addItems(self.soup.find_all(assetTags).text)
+#3
+for tag in self.soup.find_all(assetTags):
+    item = QStandardItem(tag.text)
+    self.assetItem.appendRow(item)
+
+
+
+def listProperties(self):
+    print("listProperties")
+
+    dir = os.path.dirname(self.path)
+    objPath = os.path.join(dir,"objects")
+    objFilePath = find_first("*.project.gmx", objPath)
+    #print(self.eventSelection.currentItem())  # get clicked list item
+    print(dir)
+    #print(find("*.project.gmx", objPath))
+    #try:
+    #    tmpFile = open(objFilePath)
+    #    self.soup = BeautifulSoup(tmpFile, 'lxml')
+    #    for tag in self.soup.find_all("event"):
+    #        item = QStandardItem(tag.text)
+    #        self.eventItem.appendRow(item)
+    #except:
+    #        item = QStandardItem("lol fail")
+
+translate event and action id to names
+
+I have event triggered gui clean-n-fill from file directly, a big speed improvment (not that its slow now) would be to load the entire project into memory as an object, and update that when files are changed on disk. Porbably better with "slow" small, then fast big
+
+how are custom groups even handled? should I make a gmx lib for doing this weird gml stuff?
+
+just as last time, there would be nice with the object checkboxes in the object list... maybe a bit slow, and a lot of extra work
+but code shared with the object child stuff, revese lookup all other object for the current one
+
+https://docs.python.org/3.1/library/string.html#formatstrings
+soup.select("p > a:nth-of-type(2)")
+
+
+https://github.com/RobertBColton/RadialGM/tree/master/gmk/src/include

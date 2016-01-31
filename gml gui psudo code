@@ -1,0 +1,18 @@
+gml gui psudo code
+
+projects = ["~/projects/games"]
+button( filebrowse(), projects )
+project = column(projects)
+assettype = column(sprite, sound, background, path, script, shader, font, timeline, object)
+path = path(project,assettype,asset)
+
+assets  = list( file(path))
+
+os.path.join(path, "objects", name+".object.gmx")
+os.path.join(path, "sprites", name+".sprite.gmx")
+os.path.join(path, "rooms", name+".room.gmx")
+os.path.join(path, "rooms", name+".room.gmx")
+
+events  = list( xpath(path, '//event'))
+actions = list( xpath(path, '//event/action'))
+content = code( xpath(path, '//event/action/string'))
